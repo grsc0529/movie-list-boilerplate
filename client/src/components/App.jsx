@@ -1,7 +1,17 @@
 import React from 'react';
+import MovieList from './MovieList.jsx';
+import moviesData from '../data/moviesData.js';
 
-const App = (props) => (
-  <div>Hello World!</div>
+
+const App = () => (
+  <div>
+    <MovieListSearch />
+    <MovieList 
+      moviesData={moviesData}
+    /> 
+  </div>
 );
+
+
 
 export default App;
