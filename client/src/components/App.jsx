@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieList from './MovieList.jsx';
+import SearchBar from './SearchBar.jsx';
 
 var movies = [
   {title: 'Mean Girls'},
@@ -9,10 +10,22 @@ var movies = [
   {title: 'Ex Machina'},
 ];
 
-const App = () => (
-  <div>
-    <MovieList movies={movies}/>
-  </div>  
-);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    //this.state
+  }
+
+  render() {
+    return (
+      <div>
+        <SearchBar/>
+        <MovieList movies={movies}/>
+      </div>  
+    )
+  }
+}
+
+
 
 export default App;
