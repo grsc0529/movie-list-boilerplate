@@ -23,6 +23,7 @@
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
+    "mysql": "^2.18.1",
     "nodemon": "^1.19.3"
   }
 }

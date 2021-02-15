@@ -5,7 +5,7 @@ const db = require('../db'); //import sequel connection
 
 //Estanlish connection to PORT and directory to /public files 
 const PORT = 3000 || process.env.PORT;
-const PUBLIC_DIR = path.resolve(__dirname, '..', 'client', 'dist');
+const PUBLIC_DIR = path.resolve(__dirname, '..', 'public');
 const app = express(); //invoke express
 
 //create middleware 
