@@ -19,6 +19,7 @@ class App extends React.Component {
       movieList: []
     }
     this.getMovies = this.getMovies.bind(this);
+    this.specificMovieSearch = this.specificMovieSearch.bind(this);
   }
 
   componentDidMount() {
@@ -34,7 +35,8 @@ class App extends React.Component {
     };
 
   //re-render based on search
-  specificMovieSearch () {
+  specificMovieSearch (textInputFromSearch) {
+    console.log(textInputFromSearch);
     //INPUT: event, OUTPUT: Changed table
     //on event, change the movieList state to only include the movies with 'includes'
   }
@@ -43,8 +45,12 @@ class App extends React.Component {
     return (
       <div>
         <h3>Movie List</h3>
-        <SearchBar/>
-        <MovieList movies={this.state.movieList}/>
+        <SearchBar 
+          specificMovieSearch={this.specificMovieSearch}
+        />
+        <MovieList 
+          movies={this.state.movieList}
+        />
       </div>  
     )
   }

@@ -4,26 +4,42 @@ class SearchBar extends React.Component {
     constructor (props) {
         super(props);
 
+        this.state = {
+            textInputFromSearch: ''
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+
     }
 
-    handleSubmit(event) {
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleClick(event) {
         event.preventDefault();
-        console.log('Click on Search Bar');
-        console.dir(event);
+        // console.log('Click on Search Bar');
+        // console.dir(event);
+        this.props.specificMovieSearch(this.state);
     }
 
 
     render() {
         return (
-            <form onClick={this.handleSubmit}>
-                <input type="text"></input>
+            <form onClick={this.handleClick}>
+                <input 
+                  name="textInputFromSearch"
+                  value={this.state.textInputFromSearch}
+                  onChange={this.handleChange}
+                  ></input>
                 <button>Search</button>
             </form>
         )
     }
 }
-
-
 
 export default SearchBar;
 
