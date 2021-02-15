@@ -24,12 +24,12 @@ app.use(express.static(PUBLIC_DIR));
 
 app.get('/api/movieTable', (req, res) => {
   const sql = `SELECT * FROM movieTable`;
-  db.query(sql, (err, movieData) => {
+  db.query(sql, (err, data) => {
     if (err) {
       console.log(err);
       res.send(500);
     } else {
-      res.send(movieData);
+      res.send(data);
     }
   })
 });
@@ -39,7 +39,7 @@ app.post('/api/movieTable', (req, res) => {
   const sql = `
     INSERT INTO movieTable (movieTitle, watched, releaseYear, metascore, IMBDrating) VALUES (?, ?, ?, ?, ?)
     `;
-    db.query(sql, [movieTitle, watched, releaseYear, metascore, IMBDrating], (err, movieData) => {
+    db.query(sql, [movieTitle, watched, releaseYear, metascore, IMBDrating], (err, data) => {
       if (err) {
         console.log(err);
         res.send(500);
