@@ -24,7 +24,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getMovies();
   }
-
+  //inital load
   getMovies() {
     axios.get('/api/movieTable')
       .then(({ data }) => {
@@ -33,10 +33,16 @@ class App extends React.Component {
       });
     };
 
+  //re-render based on search
+  specificMovieSearch () {
+    //INPUT: event, OUTPUT: Changed table
+    //on event, change the movieList state to only include the movies with 'includes'
+  }
+
   render() {
     return (
       <div>
-        <h3>{'Movie List'}</h3>
+        <h3>Movie List</h3>
         <SearchBar/>
         <MovieList movies={this.state.movieList}/>
       </div>  
