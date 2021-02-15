@@ -37,9 +37,9 @@ app.get('/api/movieTable', (req, res) => {
 app.post('/api/movieTable', (req, res) => {
   const { movieTable, watched, releaseYear, metascore, IMBDrating } = req.body;
   const sql = `
-    INSERT INTO movieTable (movieTable, watched, releaseYear, metascore, IMBDrating) VALUES (?, ?, ?, ?, ?)
+    INSERT INTO movieTable (id, movieTitle, watched, releaseYear, metascore, IMBDrating) VALUES (?, ?, ?, ?, ?)
     `;
-    db.query(sql, [movieTable, watched, releaseYear, metascore, IMBDrating], (err, data) => {
+    db.query(sql, [null, movieTitle, watched, releaseYear, metascore, IMBDrating], (err, data) => {
       if (err) {
         console.log(err);
         res.send(500);
@@ -53,3 +53,4 @@ app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })
 
+ 
