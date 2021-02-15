@@ -3,15 +3,6 @@ import axios from 'axios';
 import MovieList from './MovieList.jsx';
 import SearchBar from './SearchBar.jsx';
 
-
-// var movies = [
-//   {title: 'Mean Girls'},
-//   {title: 'Hackers'},
-//   {title: 'The Grey'},
-//   {title: 'Sunshine'},
-//   {title: 'Ex Machina'},
-// ];
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +16,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getMovies();
   }
+
   //inital load
   getMovies() {
     axios.get('/api/movieTable')
@@ -35,10 +27,22 @@ class App extends React.Component {
     };
 
   //re-render based on search
-  specificMovieSearch (textInputFromSearch) {
-    console.log(textInputFromSearch);
-    //INPUT: event, OUTPUT: Changed table
-    //on event, change the movieList state to only include the movies with 'includes'
+  specificMovieSearch ({ textInputFromSearch }) {    
+    var searchResultArr = [];  
+    var lowercaseTextInputFromSearch = textInputFromSearch.toLowerCase();
+    for (const movie of this.state.movieList) {
+      var lowercaseMovieTitle = movie.movieTitle.toLowerCase();
+      if (lowercaseMovieTitle.includes(lowercaseTextInputFromSearch)) {
+        searchResultArr.push(movie);
+      }
+    }
+    // console.log(searchResultArr);
+    if (searchResultArr.length === 0) {
+      this.setState({movieList: []});
+    } else {
+      this.setState({movieList: searchResultArr});
+    }
+    
   }
 
   render() {

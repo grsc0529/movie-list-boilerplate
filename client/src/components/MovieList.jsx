@@ -1,12 +1,18 @@
 import React from 'react';
 
-const MovieList = (props) => (
-  <ul>
-    {props.movies.map((movie, index) =>
-      <li key={movie.movieTitle + index}>{movie.movieTitle}</li>
+const MovieList = ({movies}) => (
+  <div>
+   {movies.map((movie, index) =>
+      <div key={movie.movieTitle + index}>{movie.movieTitle}</div>
     )}
-  </ul>
+  </div>
 );
 
 
 export default MovieList;
+
+
+/*
+
+    
+    */
