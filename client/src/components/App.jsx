@@ -21,7 +21,7 @@ class App extends React.Component {
   getMovies() {
     axios.get('/api/movieTable')
       .then(({ data }) => {
-        console.log(data)
+        console.log('original data: ', data)
         this.setState({ movieList: data })
       });
     };
@@ -37,11 +37,12 @@ class App extends React.Component {
       }
     }
     // console.log(searchResultArr);
-    if (searchResultArr.length === 0) {
-      this.setState({movieList: []});
-    } else {
-      this.setState({movieList: searchResultArr});
-    }
+    // if (searchResultArr.length === 0) {
+    //   this.setState({movieList: []});
+    // } else {
+    //   this.setState({movieList: searchResultArr});
+    // }
+    this.setState({movieList: searchResultArr});
     
   }
 
