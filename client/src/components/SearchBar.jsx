@@ -6,10 +6,16 @@ class SearchBar extends React.Component {
 
     }
 
+    handleSubmit(event) {
+        event.preventDefault();
+        console.log('Click on Search Bar');
+        console.dir(event);
+    }
+
 
     render() {
         return (
-            <form>
+            <form onClick={this.handleSubmit}>
                 <input type="text"></input>
                 <button>Search</button>
             </form>
@@ -25,3 +31,11 @@ export default SearchBar;
 //Add a search bar so that a user may see if a movie is in the list
 //After a user submits the search, display all the matches (or partial matches) to that title 
 //BONUS: handle the case of "no movie by that name found" gracefully
+
+
+/*
+1. Create a search bar so when a user types to see if a movie is in the list,
+they can see all the partial or full matches to the title 
+
+2.
+*/
