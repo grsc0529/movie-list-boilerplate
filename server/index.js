@@ -4,7 +4,7 @@ const path = require('path'); //path is a way to create easy paths to the files 
 const db = require('../db'); //import sequel connection
 
 //Estanlish connection to PORT and directory to /public files 
-const PORT = 3000 || process.env.PORT;
+const PORT = 3000; //|| process.env.PORT;
 const PUBLIC_DIR = path.resolve(__dirname, '..', 'public');
 const app = express(); //invoke express
 
@@ -35,11 +35,11 @@ app.get('/api/movieTable', (req, res) => {
 });
 
 app.post('/api/movieTable', (req, res) => {
-  const { movieTable, watched, releaseYear, metascore, IMBDrating } = req.body;
+  const { movieTitle, watched, releaseYear, metascore, IMBDrating } = req.body;
   const sql = `
-    INSERT INTO movieTable (id, movieTitle, watched, releaseYear, metascore, IMBDrating) VALUES (?, ?, ?, ?, ?)
+    INSERT INTO movieTable (movieTitle, watched, releaseYear, metascore, IMBDrating) VALUES (?, ?, ?, ?, ?)
     `;
-    db.query(sql, [null, movieTitle, watched, releaseYear, metascore, IMBDrating], (err, data) => {
+    db.query(sql, [movieTitle, watched, releaseYear, metascore, IMBDrating], (err, movieData) => {
       if (err) {
         console.log(err);
         res.send(500);
