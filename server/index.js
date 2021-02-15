@@ -9,7 +9,7 @@ const PUBLIC_DIR = path.resolve(__dirname, '..', 'public');
 const app = express(); //invoke express
 
 //create middleware 
-const loggingMiddleware = (res, req, next) => {
+const loggingMiddleware = (req, res, next) => {
   var logStr = `${req.method} request coming from ${req.url}`;
   console.log(logStr);
   next();
