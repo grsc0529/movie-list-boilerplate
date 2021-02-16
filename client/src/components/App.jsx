@@ -11,6 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      constantMovieList: [],
       movieList: []
     }
 
@@ -18,6 +19,7 @@ class App extends React.Component {
     this.getMovies = this.getMovies.bind(this);
     this.addMovie = this.addMovie.bind(this);
     this.specificMovieSearch = this.specificMovieSearch.bind(this);
+    this.renderWatchedOrUnwatchedList = this.renderWatchedOrUnwatchedList.bind(this);
   }
 
   componentDidMount() {
@@ -30,18 +32,30 @@ class App extends React.Component {
       .then(({ data }) => {
         console.log('original data: ', data)
         this.setState({
+          constantMovieList: data,
           movieList: data
         })
       });
   };
 
   //ADD MOVIE TITLE COMPONENT
-  addMovie({textInputFromAdd}){
-    if (textInputFromAdd.length > 0) {
-      var addedMovieArr = this.state.movieList;
-      addedMovieArr.push({movieTitle: textInputFromAdd})
-      this.setState({movieList: addedMovieArr})
-    }
+  addMovie({ textInputFromAdd }){
+    console.log(textInputFromAdd);
+    // if (textInputFromAdd.length > 0) {
+    //   var addedMovieArr = this.state.movieList;
+    //   addedMovieArr.push({movieTitle: textInputFromAdd})
+    //   this.setState({movieList: addedMovieArr})
+    // }
+
+    axios.post('/api/movieTable', {
+      movieTitle: textInputFromAdd, 
+      watched: 0, 
+      releaseYear: null, 
+      metascore: null, 
+      IMBDrating: null
+    })
+      .then(() => this.getMovies())
+      .catch((err) => {console.log(err)}); 
   };
 
   //SEARCH BAR COMPONENTS
@@ -59,7 +73,24 @@ class App extends React.Component {
 
   //WATCHED AND UNWATCHED BUTTONS
   renderWatchedOrUnwatchedList(boolean) {
-    console.log(boolean)
+    console.log(typeof boolean)
+
+    var watchedToggleArr = [];
+
+    if (boolean) { //1
+      for (var movie of this.state.movieList) {
+        if (movie.watched) {
+          watchedToggleArr.push(movie);
+        }
+      }
+    } else { //0
+      for (var movie of this.state.movieList) {
+        if (!movie.watched) {
+          watchedToggleArr.push(movie);
+        }
+      }
+    }
+    this.setState({movieList: watchedToggleArr})
   }
 
 
