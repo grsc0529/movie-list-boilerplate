@@ -72,11 +72,11 @@ class WatchStatus extends React.Component {
     }
 
     handleWatchedClick(event) {
-        this.props.renderWatchedOrUnwatchedList(true);
+        this.props.renderWatchedOrUnwatchedList(1);
     }
 
     handleUnwatchedClick(event) {
-        this.props.renderWatchedOrUnwatchedList(false);
+        this.props.renderWatchedOrUnwatchedList(0);
     }
 
 
