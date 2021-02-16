@@ -41,11 +41,6 @@ class App extends React.Component {
   //ADD MOVIE TITLE COMPONENT
   addMovie({ textInputFromAdd }){
     console.log(textInputFromAdd);
-    // if (textInputFromAdd.length > 0) {
-    //   var addedMovieArr = this.state.movieList;
-    //   addedMovieArr.push({movieTitle: textInputFromAdd})
-    //   this.setState({movieList: addedMovieArr})
-    // }
 
     axios.post('/api/movieTable', {
       movieTitle: textInputFromAdd, 
@@ -59,7 +54,7 @@ class App extends React.Component {
   specificMovieSearch ({ textInputFromSearch }) {    
     var searchResultArr = [];  
     var lowercaseTextInputFromSearch = textInputFromSearch.toLowerCase();
-    for (const movie of this.state.movieList) {
+    for (const movie of this.state.constantMovieList) {
       var lowercaseMovieTitle = movie.movieTitle.toLowerCase();
       if (lowercaseMovieTitle.includes(lowercaseTextInputFromSearch)) {
         searchResultArr.push(movie);
@@ -75,13 +70,13 @@ class App extends React.Component {
     var watchedToggleArr = [];
 
     if (boolean) { //1
-      for (var movie of this.state.movieList) {
+      for (var movie of this.state.constantMovieList) {
         if (movie.watched) {
           watchedToggleArr.push(movie);
         }
       }
     } else { //0
-      for (var movie of this.state.movieList) {
+      for (var movie of this.state.constantMovieList) {
         if (!movie.watched) {
           watchedToggleArr.push(movie);
         }
