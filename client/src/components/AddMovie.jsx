@@ -8,18 +8,29 @@ class AddMovie extends React.Component {
             textInputFromAdd: ''
         }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleSubmit(event) {
+    handleChange (event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleClick(event) {
         event.preventDefault();
-        console.log('Clicked on Add Movie');
+        this.props.addMovie(this.state);
     }
 
     render() {
         return (
             <form>
-                <input></input>
+                <input
+                  name="textInputFromAdd"
+                  value={this.state.textInputFromAdd}
+                  onChange={this.handleChange}
+                ></input>
                 <button onClick={this.handleClick}>Add Movie</button>
             </form>
         )

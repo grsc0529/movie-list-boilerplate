@@ -10,13 +10,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movieList: []
-      // searchedMovies: [] ---> I want this list to be reference to result of search
+      movieList: [],
+      manipulatedMovieList: [] //---> I want this list to be reference to result of search
     }
 
     //Bind methods
     this.getMovies = this.getMovies.bind(this);
-    this.add = this.addMovie.bind(this);
+    this.addMovie = this.addMovie.bind(this);
     this.specificMovieSearch = this.specificMovieSearch.bind(this);
   }
 
@@ -29,15 +29,24 @@ class App extends React.Component {
     axios.get('/api/movieTable')
       .then(({ data }) => {
         console.log('original data: ', data)
-        this.setState({ movieList: data })
+        this.setState({
+          movieList: data,
+          manipulatedMovieList: data
+        })
       });
   };
 
   //ADD MOVIE TITLE COMPONENT
-  addMovie(){};
+  addMovie({textInputFromAdd}){
+    if (textInputFromAdd.length > 0) {
+      var addedMovieArr = this.state.manipulatedMovieList;
+      addedMovieArr.push({movieTitle: textInputFromAdd})
+      this.setState({manipulatedMovieList: addedMovieArr})
+    }
+  };
 
 
-  //SEARCH BAR COMPONENT
+  //SEARCH BAR COMPONENTß
   specificMovieSearch ({ textInputFromSearch }) {    
     var searchResultArr = [];  
     var lowercaseTextInputFromSearch = textInputFromSearch.toLowerCase();
@@ -47,7 +56,7 @@ class App extends React.Component {
         searchResultArr.push(movie);
       }
     }
-    this.setState({movieList: searchResultArr});
+    this.setState({manipulatedMovieList: searchResultArr});
   }
 
 
@@ -62,7 +71,7 @@ class App extends React.Component {
           specificMovieSearch={this.specificMovieSearch}
         />
         <MovieList 
-          movies={this.state.movieList}
+          movies={this.state.manipulatedMovieList}
         />
       </div>  
     )
