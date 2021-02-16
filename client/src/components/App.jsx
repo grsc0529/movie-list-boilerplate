@@ -43,7 +43,7 @@ class App extends React.Component {
     }
   };
 
-  //SEARCH BAR COMPONENTß
+  //SEARCH BAR COMPONENTS
   specificMovieSearch ({ textInputFromSearch }) {    
     var searchResultArr = [];  
     var lowercaseTextInputFromSearch = textInputFromSearch.toLowerCase();
@@ -67,6 +67,11 @@ class App extends React.Component {
         <SearchBar 
           specificMovieSearch={this.specificMovieSearch}
         />
+        <br></br>
+        <button>Watched</button>
+        <button>Unwatched</button>
+        <br></br>
+        <br></br>
         <MovieList 
           movies={this.state.movieList}
         />
