@@ -10,11 +10,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movieList: [],
-      manipulatedMovieList: [] //---> I want this list to be reference to result of search
+      movieList: []
     }
 
-    //Bind methods
+    //BIND METHODS
     this.getMovies = this.getMovies.bind(this);
     this.addMovie = this.addMovie.bind(this);
     this.specificMovieSearch = this.specificMovieSearch.bind(this);
@@ -30,8 +29,7 @@ class App extends React.Component {
       .then(({ data }) => {
         console.log('original data: ', data)
         this.setState({
-          movieList: data,
-          manipulatedMovieList: data
+          movieList: data
         })
       });
   };
@@ -39,12 +37,11 @@ class App extends React.Component {
   //ADD MOVIE TITLE COMPONENT
   addMovie({textInputFromAdd}){
     if (textInputFromAdd.length > 0) {
-      var addedMovieArr = this.state.manipulatedMovieList;
+      var addedMovieArr = this.state.movieList;
       addedMovieArr.push({movieTitle: textInputFromAdd})
-      this.setState({manipulatedMovieList: addedMovieArr})
+      this.setState({movieList: addedMovieArr})
     }
   };
-
 
   //SEARCH BAR COMPONENTß
   specificMovieSearch ({ textInputFromSearch }) {    
@@ -56,7 +53,7 @@ class App extends React.Component {
         searchResultArr.push(movie);
       }
     }
-    this.setState({manipulatedMovieList: searchResultArr});
+    this.setState({movieList: searchResultArr});
   }
 
 
@@ -71,7 +68,7 @@ class App extends React.Component {
           specificMovieSearch={this.specificMovieSearch}
         />
         <MovieList 
-          movies={this.state.manipulatedMovieList}
+          movies={this.state.movieList}
         />
       </div>  
     )
