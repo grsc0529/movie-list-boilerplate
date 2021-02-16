@@ -79,14 +79,12 @@ class WatchStatus extends React.Component {
         this.props.renderWatchedOrUnwatchedList(0);
     }
 
-
     render() {
         return (
             <div>
               <button onClick={this.handleWatchedClick}>Watched</button>
               <button onClick={this.handleUnwatchedClick}>Unwatched</button>
             </div>
-
         )
     }
 }
