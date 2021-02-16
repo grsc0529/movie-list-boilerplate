@@ -102,7 +102,7 @@ class App extends React.Component {
           />
         <br></br>
         <MovieList 
-          movies={this.state.movieList}
+          movieList={this.state.movieList}
         />
       </div>  
     )
