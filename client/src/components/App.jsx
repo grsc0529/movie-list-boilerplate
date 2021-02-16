@@ -97,11 +97,13 @@ class App extends React.Component {
           renderWatchedOrUnwatchedList={this.renderWatchedOrUnwatchedList}
           />
         <br></br>
+        <table>
           {this.state.movieList.map((movieObj) => {
             return (
               <MovieList key={movieObj.movieTitle} movieObj={movieObj} />
             )
           })}
+        </table>
       </div>  
     )
   }

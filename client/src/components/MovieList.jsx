@@ -1,5 +1,4 @@
 import React from 'react';
-import MovieListComponent from './MovieListComponent';
 
 class MovieList extends React.Component {
   constructor(props) {
@@ -11,10 +10,10 @@ class MovieList extends React.Component {
   }
   render() {
     return (
-      <div>
-        <div>{this.props.movieObj.movieTitle}</div>
-        <button>Unwatched</button>
-      </div>
+      <tr>
+        <td>{this.props.movieObj.movieTitle}</td>
+        <td><button>Unwatched</button></td>
+      </tr>
     )
   }
 }
