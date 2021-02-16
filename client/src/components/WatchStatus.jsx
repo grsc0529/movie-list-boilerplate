@@ -5,8 +5,10 @@ class WatchStatus extends React.Component {
         super(props);
 
         this.state = {
-
+            isWatched: null
         }
+        this.handleWatchedClick = this.handleWatchedClick.bind(this);
+        this.handleUnwatchedClick = this.handleUnwatchedClick.bind(this);
     }
 
     handleWatchedClick (event) {
