@@ -1,15 +1,22 @@
+//Libraries
 import React from 'react';
 import axios from 'axios';
+//Components
 import MovieList from './MovieList.jsx';
 import SearchBar from './SearchBar.jsx';
+import AddMovie from './AddMovie.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       movieList: []
+      // searchedMovies: [] ---> I want this list to be reference to result of search
     }
+
+    //Bind methods
     this.getMovies = this.getMovies.bind(this);
+    this.add = this.addMovie.bind(this);
     this.specificMovieSearch = this.specificMovieSearch.bind(this);
   }
 
@@ -17,16 +24,20 @@ class App extends React.Component {
     this.getMovies();
   }
 
-  //inital load
+  //INITIAL LOAD
   getMovies() {
     axios.get('/api/movieTable')
       .then(({ data }) => {
         console.log('original data: ', data)
         this.setState({ movieList: data })
       });
-    };
+  };
 
-  //re-render based on search
+  //ADD MOVIE TITLE COMPONENT
+  addMovie(){};
+
+
+  //SEARCH BAR COMPONENT
   specificMovieSearch ({ textInputFromSearch }) {    
     var searchResultArr = [];  
     var lowercaseTextInputFromSearch = textInputFromSearch.toLowerCase();
@@ -36,20 +47,17 @@ class App extends React.Component {
         searchResultArr.push(movie);
       }
     }
-    // console.log(searchResultArr);
-    // if (searchResultArr.length === 0) {
-    //   this.setState({movieList: []});
-    // } else {
-    //   this.setState({movieList: searchResultArr});
-    // }
     this.setState({movieList: searchResultArr});
-    
   }
+
 
   render() {
     return (
       <div>
         <h3>Movie List</h3>
+        <AddMovie
+          addMovie={this.addMovie}
+        />
         <SearchBar 
           specificMovieSearch={this.specificMovieSearch}
         />
