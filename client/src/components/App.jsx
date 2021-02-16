@@ -58,6 +58,9 @@ class App extends React.Component {
   }
 
   //WATCHED AND UNWATCHED BUTTONS
+  renderWatchedOrUnwatchedList(boolean) {
+    console.log(boolean)
+  }
 
 
   render() {
@@ -71,7 +74,9 @@ class App extends React.Component {
           specificMovieSearch={this.specificMovieSearch}
         />
         <br></br>
-        <WatchStatus />
+        <WatchStatus 
+          renderWatchedOrUnwatchedList={this.renderWatchedOrUnwatchedList}
+          />
         <br></br>
         <MovieList 
           movies={this.state.movieList}
