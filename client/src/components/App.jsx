@@ -49,10 +49,7 @@ class App extends React.Component {
 
     axios.post('/api/movieTable', {
       movieTitle: textInputFromAdd, 
-      watched: 0, 
-      releaseYear: null, 
-      metascore: null, 
-      IMBDrating: null
+      watched: 0
     })
       .then(() => this.getMovies())
       .catch((err) => {console.log(err)}); 

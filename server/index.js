@@ -35,11 +35,11 @@ app.get('/api/movieTable', (req, res) => {
 });
 
 app.post('/api/movieTable', (req, res) => {
-  const { movieTitle, watched, releaseYear, metascore, IMBDrating } = req.body;
+  const { movieTitle, releaseYear, metascore, IMBDrating, watched} = req.body;
   const sql = `
-    INSERT INTO movieTable (movieTitle, watched, releaseYear, metascore, IMBDrating) VALUES (?, ?, ?, ?, ?)
+    INSERT INTO movieTable (movieTitle, releaseYear, metascore, IMBDrating, watched) VALUES (?, ?, ?, ?, ?)
     `;
-    db.query(sql, [movieTitle, watched, releaseYear, metascore, IMBDrating], (err, data) => {
+    db.query(sql, [movieTitle, releaseYear, metascore, IMBDrating, watched], (err, data) => {
       if (err) {
         console.log(err);
         res.send(500);
