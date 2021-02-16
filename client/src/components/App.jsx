@@ -5,6 +5,7 @@ import axios from 'axios';
 import MovieList from './MovieList.jsx';
 import SearchBar from './SearchBar.jsx';
 import AddMovie from './AddMovie.jsx';
+import WatchStatus from './WatchStatus.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -56,6 +57,8 @@ class App extends React.Component {
     this.setState({movieList: searchResultArr});
   }
 
+  //WATCHED AND UNWATCHED BUTTONS
+
 
   render() {
     return (
@@ -68,9 +71,7 @@ class App extends React.Component {
           specificMovieSearch={this.specificMovieSearch}
         />
         <br></br>
-        <button>Watched</button>
-        <button>Unwatched</button>
-        <br></br>
+        <WatchStatus />
         <br></br>
         <MovieList 
           movies={this.state.movieList}
