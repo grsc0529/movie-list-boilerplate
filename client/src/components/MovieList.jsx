@@ -1,27 +1,26 @@
 import React from 'react';
-
-// const MovieList = ({movies}) => (
-//   <div>
-//    {movies.map((movie, index) =>
-//       <div key={movie.movieTitle + index}>{movie.movieTitle}</div>
-//     )}
-//   </div>
-// );
+import MovieListComponent from './MovieListComponent';
 
 class MovieList extends React.Component {
   constructor(props) {
     super(props);
 
-    //this.state
+    // this.state = {
+    //   movieList = this.props.movieList
+    // }
   }
   render() {
     return (
       <div>
-        {console.log(this.props.movieList)}
+        <div>{this.props.movieObj.movieTitle}</div>
+        <button>Unwatched</button>
       </div>
     )
   }
 }
 
 
+
 export default MovieList;
+
+

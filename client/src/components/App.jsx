@@ -2,10 +2,10 @@
 import React from 'react';
 import axios from 'axios';
 //Components
-import MovieList from './MovieList.jsx';
-import SearchBar from './SearchBar.jsx';
 import AddMovie from './AddMovie.jsx';
+import SearchBar from './SearchBar.jsx';
 import WatchStatus from './WatchStatus.jsx';
+import MovieList from './MovieList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -40,8 +40,6 @@ class App extends React.Component {
 
   //ADD MOVIE TITLE COMPONENT
   addMovie({ textInputFromAdd }){
-    console.log(textInputFromAdd);
-
     axios.post('/api/movieTable', {
       movieTitle: textInputFromAdd, 
       watched: 0
@@ -65,8 +63,6 @@ class App extends React.Component {
 
   //WATCHED AND UNWATCHED BUTTONS
   renderWatchedOrUnwatchedList(boolean) {
-    console.log(typeof boolean)
-
     var watchedToggleArr = [];
 
     if (boolean) { //1
@@ -101,9 +97,11 @@ class App extends React.Component {
           renderWatchedOrUnwatchedList={this.renderWatchedOrUnwatchedList}
           />
         <br></br>
-        <MovieList 
-          movieList={this.state.movieList}
-        />
+          {this.state.movieList.map((movieObj) => {
+            return (
+              <MovieList key={movieObj.movieTitle} movieObj={movieObj} />
+            )
+          })}
       </div>  
     )
   }
