@@ -16,10 +16,13 @@ class App extends React.Component {
     }
 
     //BIND METHODS
+    console.log(this);
     this.getMovies = this.getMovies.bind(this);
     this.addMovie = this.addMovie.bind(this);
     this.specificMovieSearch = this.specificMovieSearch.bind(this);
     this.renderWatchedOrUnwatchedList = this.renderWatchedOrUnwatchedList.bind(this);
+    this.changeWatchedInMovieObj = this.changeWatchedInMovieObj.bind(this);
+
   }
 
   componentDidMount() {
@@ -40,11 +43,12 @@ class App extends React.Component {
 
   //ADD MOVIE COMPONENT
   addMovie({ textInputFromAdd }){
+    const getRequest = this.getMovies;
     axios.post('/api/movieTable', {
       movieTitle: textInputFromAdd, 
       watched: 0
     })
-      .then(() => this.getMovies())
+      .then(() => getRequest())
       .catch((err) => {console.log(err)}); 
   };
 
@@ -82,17 +86,15 @@ class App extends React.Component {
   }
 
   //RE-RENDER WATCHED BUTTON OF MOVIE LIST COMPONENT
-  changeWatchedInMovieObj( {clickedMovieObjMovieTitle, antiIsWatchedMovie } ) {
-    console.log('info passed back to changeWatchedInMovieObj in App.jsx: ', clickedMovieObjMovieTitle, antiIsWatchedMovie);
+  changeWatchedInMovieObj ( {clickedMovieObjMovieTitle, antiIsWatchedMovie } ) {
+    const getRequest = this.getMovies;
     axios.put('/api/movieTable', {
       watched: antiIsWatchedMovie,
       movieTitle: clickedMovieObjMovieTitle
     })
-      .then(() => this.getMovies())
+      .then(() => getRequest())
       .catch((err) => {console.log(err)});
-
   }
-
 
   render() {
     return (
