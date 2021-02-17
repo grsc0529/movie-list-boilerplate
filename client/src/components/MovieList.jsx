@@ -35,12 +35,16 @@ class MovieList extends React.Component {
     //When this button is clicked
     //It should trigger an axios request to change the watched property of the current
     //object to be the opposite of it's current state
-    // axios.put('/api/movieTable', {
-    //   watched: !this.state.isWatchedMovie,
-    //   id: this.props.movieObj.id
-    // })
-    //   .then(() => this.props.getMovies())
-    //   .catch((err) => {console.log(err)});
+    var objID = this.props.movieObj.id;
+    console.log(objID)
+    var antiIsWatchedMovie = !this.state.isWatchedMovie;
+    console.log(antiIsWatchedMovie)
+    axios.put('/api/movieTable', {
+      watched: antiIsWatchedMovie,
+      id: objID
+    })
+      .then(() => this.props.getMovies(), this.toggleButtonName())
+      .catch((err) => {console.log(err)});
   }
 
   render() {

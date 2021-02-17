@@ -102,7 +102,7 @@ class App extends React.Component {
             return (
               <MovieList 
                 key={movieObj.movieTitle} 
-                movieObj={movieObj} 
+                movieObj={movieObj}
                 getMovies={this.getMovies}
               />
             )
