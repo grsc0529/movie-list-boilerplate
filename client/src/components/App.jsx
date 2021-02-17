@@ -81,6 +81,11 @@ class App extends React.Component {
     this.setState({movieList: watchedToggleArr})
   }
 
+  //RE-RENDER WATCHED BUTTON OF MOVIE LIST COMPONENT
+  // changeWatchedInMovieObj( { } ) {
+
+  // }
+
 
   render() {
     return (
@@ -104,6 +109,7 @@ class App extends React.Component {
                 key={movieObj.movieTitle} 
                 movieObj={movieObj}
                 getMovies={this.getMovies}
+                // changeWatchedInMovieObj={this.changeWatchedInMovieObj}
               />
             )
           })}
