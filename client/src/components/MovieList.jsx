@@ -3,10 +3,7 @@ import React from 'react';
 class MovieList extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-    }
-
+    
     //Bind Methods
     this.renderWatchedLabel = this.renderWatchedLabel.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -19,7 +16,6 @@ class MovieList extends React.Component {
     } else {
       return 'To Watch';
     }
-
   }
 
   handleClick(event) {
@@ -35,7 +31,6 @@ class MovieList extends React.Component {
       <tr>
         <td>{this.props.movieObj.movieTitle}</td>
         <td><button onClick={this.handleClick}>{this.renderWatchedLabel(this.props.movieObj.watched)}</button></td>
-
       </tr>
       </tbody>
     )
