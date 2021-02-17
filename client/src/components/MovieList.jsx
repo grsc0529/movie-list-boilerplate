@@ -1,11 +1,13 @@
 import React from 'react';
+import axios from 'axios';
 
 class MovieList extends React.Component {
   constructor(props) {
     super(props);
 
     // this.state = {
-    //   movieList = this.props.movieList
+    //   isWatchedMovie: this.props.movieTitle.watched,
+    //   buttonLabel: ''
     // }
 
     //Bind Methods
@@ -15,7 +17,12 @@ class MovieList extends React.Component {
 
   handleClick(event) {
     console.log('Unwatched button clicked!')
-    
+    axios.put(`/api/movieTable/${this.props.movieObj.id}`)
+      .then(res => {
+        this.setState({items: res.data});
+        this.props.history.push('/movieTable');
+      })
+      .catch(err => (console.log(err)));
   }
 
   render() {
