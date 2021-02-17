@@ -6,7 +6,7 @@ class MovieList extends React.Component {
     
     //Bind Methods
     this.renderWatchedLabel = this.renderWatchedLabel.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleWatchedButtonClick = this.handleWatchedButtonClick.bind(this);
 
   }
 
@@ -18,7 +18,12 @@ class MovieList extends React.Component {
     }
   }
 
-  handleClick(event) {
+  handleMovieTitleClick(event) {
+    event.preventDefault();
+    console.log('Movie Title Was Clicked');
+  }
+
+  handleWatchedButtonClick(event) {
     event.preventDefault();
     var clickedMovieObjMovieTitle = this.props.movieObj.movieTitle;
     var antiIsWatchedMovie = !this.props.movieObj.watched;
@@ -29,8 +34,8 @@ class MovieList extends React.Component {
     return (
       <tbody>
       <tr>
-        <td>{this.props.movieObj.movieTitle}</td>
-        <td><button onClick={this.handleClick}>{this.renderWatchedLabel(this.props.movieObj.watched)}</button></td>
+        <td onClick={this.handleMovieTitleClick}>{this.props.movieObj.movieTitle}</td>
+        <td><button onClick={this.handleWatchedButtonClick}>{this.renderWatchedLabel(this.props.movieObj.watched)}</button></td>
       </tr>
       </tbody>
     )
