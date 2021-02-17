@@ -50,11 +50,11 @@ app.post('/api/movieTable', (req, res) => {
 });
 
 app.put('/api/movieTable', (req, res) => {
-  const { watched, id } = req.body;
+  const { watched, movieTitle } = req.body;
   const sql = `
-    UPDATE movieTable SET watched = (?) WHERE id = (?)
+    UPDATE movieTable SET watched = (?) WHERE movieTitle = (?)
   `;
-  db.query(sql, [watched, id], (err, data) => {
+  db.query(sql, [watched, movieTitle], (err, data) => {
     if (err) {
       console.log(err);
       res.send(500);

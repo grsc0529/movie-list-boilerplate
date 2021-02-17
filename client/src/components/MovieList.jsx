@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 class MovieList extends React.Component {
   constructor(props) {
@@ -32,12 +31,11 @@ class MovieList extends React.Component {
  
     console.log('clicked movie: ', this.props.movieObj);
 
-    var objID = this.props.movieObj.id;
-    console.log('object id of clicked movie: ', objID)
+    var clickedMovieObjMovieTitle = this.props.movieObj.movieTitle;
     var antiIsWatchedMovie = !this.props.movieObj.watched;
-    console.log('opposite of current "watched" property: ', antiIsWatchedMovie)
-
-    this.props.changeWatchedInMovieObj({objID, antiIsWatchedMovie});
+    console.log('object title of clicked movie: ', clickedMovieObjMovieTitle, 'opposite of current "watched" property: ', antiIsWatchedMovie)
+    
+    this.props.changeWatchedInMovieObj({clickedMovieObjMovieTitle, antiIsWatchedMovie});
   }
 
   render() {
