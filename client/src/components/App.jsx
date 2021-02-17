@@ -82,9 +82,16 @@ class App extends React.Component {
   }
 
   //RE-RENDER WATCHED BUTTON OF MOVIE LIST COMPONENT
-  // changeWatchedInMovieObj( { } ) {
+  changeWatchedInMovieObj( {objID, antiIsWatchedMovie } ) {
+    console.log('info passed back to changeWatchedInMovieObj in App.jsx: ', objID, antiIsWatchedMovie);
+    axios.put('/api/movieTable', {
+      watched: antiIsWatchedMovie,
+      id: objID
+    })
+      .then(() => this.props.getMovies())
+      .catch((err) => {console.log(err)});
 
-  // }
+  }
 
 
   render() {
@@ -108,8 +115,8 @@ class App extends React.Component {
               <MovieList 
                 key={movieObj.movieTitle} 
                 movieObj={movieObj}
-                getMovies={this.getMovies}
-                // changeWatchedInMovieObj={this.changeWatchedInMovieObj}
+                // getMovies={this.getMovies}
+                changeWatchedInMovieObj={this.changeWatchedInMovieObj}
               />
             )
           })}

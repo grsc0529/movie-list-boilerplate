@@ -17,20 +17,6 @@ class MovieList extends React.Component {
 
   }
 
-  // componentDidMount() {
-  //   this.toggleButtonName();
-  // }
-
-  // toggleButtonName() {
-  //   if (this.props.movieObj.watched) { //true
-  //     this.setState({isWatchedMovie: 1, buttonLabel: 'Watched'})
-  //     // this.setState({buttonLabel: 'Watched'});
-  //   } else {
-  //     this.setState({isWatchedMovie: 0, buttonLabel: 'To Watch'})
-  //     // this.setState({buttonLabel: 'To Watch'});
-  //   }
-  // }
-
   renderWatchedLabel(boolean) {
     if (this.props.movieObj.watched) {
       return 'Watched';
@@ -43,21 +29,15 @@ class MovieList extends React.Component {
   handleClick(event) {
     event.preventDefault();
     console.log('MovieList Button clicked!')
-    
-    //When this button is clicked
-    //It should trigger an axios request to change the watched property of the current
-    //object to be the opposite of it's current state
-    console.log(this.props.movieObj);
+ 
+    console.log('clicked movie: ', this.props.movieObj);
+
     var objID = this.props.movieObj.id;
-    console.log(objID)
-    var antiIsWatchedMovie = !this.state.isWatchedMovie;
-    console.log(antiIsWatchedMovie)
-    axios.put('/api/movieTable', {
-      watched: antiIsWatchedMovie,
-      id: objID
-    })
-      .then(() => this.props.getMovies()/*, this.toggleButtonName()*/)
-      .catch((err) => {console.log(err)});
+    console.log('object id of clicked movie: ', objID)
+    var antiIsWatchedMovie = !this.props.movieObj.watched;
+    console.log('opposite of current "watched" property: ', antiIsWatchedMovie)
+
+    this.props.changeWatchedInMovieObj({objID, antiIsWatchedMovie});
   }
 
   render() {
