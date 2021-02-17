@@ -14,15 +14,19 @@ class MovieList extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  toggleButtonName() {
+    // if (this.props.movieObj.watched) { //true
+    //   this.setState({buttonLabel: 'Watched'});
+    // } else {
+    //   this.setState({buttonLabel: 'To Watch'});
+    // }
+
+  }
+
 
   handleClick(event) {
     console.log('Unwatched button clicked!')
-    axios.put(`/api/movieTable/${this.props.movieObj.id}`)
-      .then(res => {
-        this.setState({items: res.data});
-        this.props.history.push('/movieTable');
-      })
-      .catch(err => (console.log(err)));
+    // axios.put(`/api/movieTable/`)
   }
 
   render() {
