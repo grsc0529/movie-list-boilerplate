@@ -38,7 +38,7 @@ class App extends React.Component {
       });
   };
 
-  //ADD MOVIE TITLE COMPONENT
+  //ADD MOVIE COMPONENT
   addMovie({ textInputFromAdd }){
     axios.post('/api/movieTable', {
       movieTitle: textInputFromAdd, 
@@ -100,7 +100,11 @@ class App extends React.Component {
         <table>
           {this.state.movieList.map((movieObj) => {
             return (
-              <MovieList key={movieObj.movieTitle} movieObj={movieObj} />
+              <MovieList 
+                key={movieObj.movieTitle} 
+                movieObj={movieObj} 
+                getMovies={this.getMovies}
+              />
             )
           })}
         </table>

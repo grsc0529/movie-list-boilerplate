@@ -49,21 +49,20 @@ app.post('/api/movieTable', (req, res) => {
   })
 });
 
-// app.put('/api/movieTable', (req, res) => {
-//   const { watched } = req.body;
-//   const sql = `
-//     UPDATE movieTable SET (watched) WHERE id = (?)
-//   `;
-//   db.query(sql, [], (err, data) => {
-//     if (err) {
-//       console.log(err);
-//       res.send(500);
-//     } else {
-//       res.send(data);
-//     }
-//   })
-
-// })
+app.put('/api/movieTable', (req, res) => {
+  const { watched, id } = req.body;
+  const sql = `
+    UPDATE movieTable SET watched = (?) WHERE id = (?)
+  `;
+  db.query(sql, [watched, id], (err, data) => {
+    if (err) {
+      console.log(err);
+      res.send(500);
+    } else {
+      res.send(data);
+    }
+  })
+})
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
