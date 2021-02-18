@@ -16,7 +16,6 @@ class App extends React.Component {
     }
 
     //BIND METHODS
-    console.log(this);
     this.getMovies = this.getMovies.bind(this);
     this.addMovie = this.addMovie.bind(this);
     this.specificMovieSearch = this.specificMovieSearch.bind(this);
