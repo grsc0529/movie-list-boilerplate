@@ -1,9 +1,11 @@
 //import dependencies that are needed to make the server side run
-const express = require('express');
+const express = require('express'); 
 const morgan = require('morgan');
 const path = require('path');
 const app = express();
 const port = 3000;
+
+// mongoose.connect('mongodb://localhost:27017/movielistdatabase', {useNewUrlParser: true});
 
 //where are we working?
 //USE PATH to point to our static directory! 
@@ -15,8 +17,9 @@ console.log('PUBLIC_DIR file path name: ', PUBLIC_DIR);
 //invoke all libraries 
 //use express .use with the static files located to point the server to the static files
 app.use(express.static(PUBLIC_DIR));
-app.use(morgan);
+app.use(morgan());
 //THERE IS SOMETHING ABOUT JSON HERE... What is that?
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

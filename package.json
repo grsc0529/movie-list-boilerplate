@@ -24,6 +24,8 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.11.17",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "nodemon": "^1.19.3"

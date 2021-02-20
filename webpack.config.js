@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: path.resolve(__dirname, 'client', 'src', 'index.js'),
@@ -25,5 +26,7 @@ module.exports = {
   mode: 'development',
   resolve: {
     extensions: ['.js', '.jsx']
-  }
+  },
+  devtool: false, 
+  plugins: [new webpack.SourceMapDevToolPlugin({})]
 };
