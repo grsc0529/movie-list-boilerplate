@@ -3,7 +3,7 @@ const express = require('express'); //express is a node library
 const path = require('path'); //path is a way to create easy paths to the files in your repo
 const db = require('../db'); //import sequel connection
 
-//Estanlish connection to PORT and directory to /public files 
+//Establish connection to PORT and directory to /public files 
 const PORT = 3000; //|| process.env.PORT;
 const PUBLIC_DIR = path.resolve(__dirname, '..', 'public');
 const app = express(); //invoke express
