@@ -1,5 +1,6 @@
 //What tools do we need to create our server connection?
 const express = require('express'); //express is a node library
+const { url } = require('inspector');
 const path = require('path'); //path is a way to create easy paths to the files in your repo
 const db = require('../db'); //import sequel connection
 
@@ -20,7 +21,7 @@ app.use(loggingMiddleware);
 app.use(express.json());
 app.use(express.static(PUBLIC_DIR));
 
-//construct request methods 
+//construct request methods to database
 
 app.get('/api/movieTable', (req, res) => {
   const sql = `SELECT * FROM movieTable`;
