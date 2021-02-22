@@ -21,8 +21,7 @@ app.use(loggingMiddleware);
 app.use(express.json());
 app.use(express.static(PUBLIC_DIR));
 
-//construct request methods to database
-
+//construct request methods
 app.get('/api/movieTable', (req, res) => {
   const sql = `SELECT * FROM movieTable`;
   db.query(sql, (err, data) => {
